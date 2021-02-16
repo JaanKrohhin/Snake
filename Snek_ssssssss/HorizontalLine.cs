@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Snek_ssssssss
 {
-    class HorizontalLine
+    class HorizontalLine:Figure
     {
-        List<Point> plist;
-
         public HorizontalLine(int xleft,int xright,int y, char sym)
         {
             plist = new List<Point>();

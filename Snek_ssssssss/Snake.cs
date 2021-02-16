@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Snek_ssssssss
 {
-    class VerticalLine:Figure
+    class Snake:Figure
     {
-        public VerticalLine(int yUp, int yDown, int x, char sym)
+        public Snake(Point tail, int length, Directions direction)
         {
             plist = new List<Point>();
-            for (int y = yUp; y < yDown; y++)
+            for (int i = 0; i < length; i++)
             {
-                Point p = new Point(x, y, sym);
+                Point p = new Point(tail);
+                p.Move(i, direction);
                 plist.Add(p);
-
             }
         }
     }
