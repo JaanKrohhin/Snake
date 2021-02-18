@@ -12,24 +12,23 @@ namespace Snek_ssssssss
         static void Main(string[] args)
         {
             Console.SetWindowSize(80, 25);
-            HorizontalLine upline = new HorizontalLine(0,78,0,'+');
-            HorizontalLine downline = new HorizontalLine(0, 78, 24, '+');
-            VerticalLine leftline = new VerticalLine(0,24,0,'+');
-            VerticalLine rightline = new VerticalLine(0,24,78,'+');
-            upline.Drow();
-            downline.Drow();
-            leftline.Drow();
-            rightline.Drow();
+
+            Walls walls = new Walls(80, 25);
+            walls.Draw();
              
             Point p = new Point(4, 5, '*');
             Snake snake=new Snake(p,4,Directions.RIGHT);
-            snake.Drow();
+            snake.Draw();
 
             FoodCreator foodCreator = new FoodCreator(80, 25, '$');
             Point food = foodCreator.CreateFood();
             food.Draw();
             while (true)
             {
+                if (walls.IsHit(snake) || snake.IsHitTail())
+                {
+
+                }
                 if (snake.Eat(food))
                 {
                     food = foodCreator.CreateFood();

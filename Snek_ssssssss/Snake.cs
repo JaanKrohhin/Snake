@@ -37,6 +37,17 @@ namespace Snek_ssssssss
             nextPoint.Move(1, direction);
             return nextPoint;
         }
+        internal bool IsHitTail()
+        {
+            var head = plist.Last();
+            for (int i = 0; i < plist.Count-2; i++)
+            {
+                if (head.IsHit(plist[i]))
+                    return true;
+            }
+            return false;
+        }
+        
         public void HandleKey(ConsoleKey key)
         {
             if (key == ConsoleKey.LeftArrow)

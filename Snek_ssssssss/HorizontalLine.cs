@@ -18,7 +18,7 @@ namespace Snek_ssssssss
 
             }
         }
-        public void Drow()
+        public void Draw()
         {
             foreach (Point p in plist)
             {
