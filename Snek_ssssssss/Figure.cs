@@ -9,7 +9,7 @@ namespace Snek_ssssssss
     class Figure
     {
         protected List<Point> plist;
-        public void Drow()
+        public virtual void Draw()
         {
             foreach (Point p in plist)
             {
