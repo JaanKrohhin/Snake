@@ -40,11 +40,11 @@ namespace Snek_ssssssss
             }
             else if (direction==Directions.UP)
             {
-                y = y + offset;
+                y = y - offset;
             }
             else if (direction==Directions.DOWN)
             {
-                y = y - offset;            }
+                y = y + offset;            }
         }
         public void Draw()
         {
