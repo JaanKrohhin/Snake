@@ -18,14 +18,12 @@ namespace Snek_ssssssss
 
             }
         }
-        public override void Draw()
+        public void Drow()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
             foreach (Point p in plist)
             {
                 p.Draw();
             }
-            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
