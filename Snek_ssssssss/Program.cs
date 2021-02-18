@@ -27,7 +27,7 @@ namespace Snek_ssssssss
             {
                 if (walls.IsHit(snake) || snake.IsHitTail())
                 {
-
+                    break;
                 }
                 if (snake.Eat(food))
                 {
@@ -45,8 +45,6 @@ namespace Snek_ssssssss
                     ConsoleKeyInfo key = Console.ReadKey();
                     snake.HandleKey(key.Key);
                 }
-                Thread.Sleep(50);
-                snake.Move();
             }
         }
 

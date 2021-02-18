@@ -69,9 +69,7 @@ namespace Snek_ssssssss
                 return true;
             }
             else
-            {
                 return false;
-            }
         }
     }
 }
