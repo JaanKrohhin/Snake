@@ -8,21 +8,14 @@ namespace Snek_ssssssss
 {
     class HorizontalLine:Figure
     {
-        public HorizontalLine(int xleft,int xright,int y, char sym)
+        public HorizontalLine(int xleft,int xright,int y, char sym, ConsoleColor colour)
         {
             plist = new List<Point>();
             for (int x = xleft; x < xright; x++)
             {
-                Point p = new Point(x, y, sym);
+                Point p = new Point(x, y, sym, colour);
                 plist.Add(p);
 
-            }
-        }
-        public void Draw()
-        {
-            foreach (Point p in plist)
-            {
-                p.Draw();
             }
         }
     }

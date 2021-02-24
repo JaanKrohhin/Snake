@@ -11,22 +11,23 @@ namespace Snek_ssssssss
         public int x;
         public int y;
         public char sym;
-
+        public ConsoleColor colour;
         public Point()
         {
         }
-        public Point(int _x,int _y,char _sym)
+        public Point(int x_, int y_, char sym_, ConsoleColor colour_)
         {
-            x = _x;
-            y = _y;
-            sym = _sym;
-
+            x = x_;
+            y = y_;
+            sym = sym_;
+            colour=colour_;
         }
-        public Point (Point p)
+        public Point(Point p, ConsoleColor colour_)
         {
             x = p.x;
             y = p.y;
             sym = p.sym;
+            colour = colour_;
         }
         public void Move(int offset,Directions direction)
         {
@@ -53,6 +54,7 @@ namespace Snek_ssssssss
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
+            Console.ForegroundColor = colour;
             Console.Write(sym);
         }
         public void Clear()

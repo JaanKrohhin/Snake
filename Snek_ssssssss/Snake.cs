@@ -8,14 +8,16 @@ namespace Snek_ssssssss
 {
     class Snake:Figure
     {
-        public Directions direction; 
-        public Snake(Point tail, int length, Directions _direction)
+        public Directions direction;
+        public ConsoleColor colour;
+        public Snake(Point tail, int length, Directions _direction, ConsoleColor colour)
         {
             direction = _direction;
+            this.colour = colour;
             plist = new List<Point>();
             for (int i = 0; i < length; i++)
             {
-                Point p = new Point(tail);
+                Point p = new Point(tail, colour);
                 p.Move(i, direction);
                 plist.Add(p);
             }
@@ -26,14 +28,13 @@ namespace Snek_ssssssss
             plist.Remove(tail);
             Point head = GetNextPoint();
             plist.Add(head);
-
             tail.Clear();
             head.Draw();
         }
         public Point GetNextPoint()
         {
             Point head = plist.Last();
-            Point nextPoint = new Point(head);
+            Point nextPoint = new Point(head, colour);
             nextPoint.Move(1, direction);
             return nextPoint;
         }
