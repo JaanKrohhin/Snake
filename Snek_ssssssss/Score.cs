@@ -15,9 +15,9 @@ namespace Snek_ssssssss
         string name;
         string[] names = new string[11];
         int[] scores = new int[11];
-        public void AddPoint()
+        public void AddPoint(int mult)
         {
-            score = score + 1;
+            score = (score + 10)*mult;
         }
         public void KeepScore()
         {

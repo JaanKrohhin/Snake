@@ -10,7 +10,7 @@ namespace Snek_ssssssss
 	{
 		static void Action(Game game)
 		{
-			Console.SetWindowSize(80, 25);
+			Difficulty diff = new Difficulty(game.dif);
 			Score score = new Score();
 
 			Console.BackgroundColor = game.colours[3];
@@ -26,10 +26,10 @@ namespace Snek_ssssssss
 			Snake snake = new Snake(p, 4, Directions.RIGHT, game.colours[0]);
 			snake.Draw();
 
-			Walls walls = new Walls(80, 25, game.syms[2], game.colours[2]);
+			Walls walls = new Walls(diff.numbers[1], diff.numbers[2], game.syms[2], game.colours[2]);
 			walls.Draw();
 
-			FoodCreator foodCreator = new FoodCreator(80, 25, game.syms[1], game.colours[1]);
+			FoodCreator foodCreator = new FoodCreator(diff.numbers[1], diff.numbers[2], game.syms[1], game.colours[1]);
 			Point food = foodCreator.CreateFood();
 			food.Draw();
 
@@ -43,27 +43,29 @@ namespace Snek_ssssssss
 				{
 					food = foodCreator.CreateFood();
 					food.Draw();
-					score.AddPoint();
+					score.AddPoint(diff.numbers[3]);
 				}
 				else
 				{
 					snake.Move();
 				}
 
-				Thread.Sleep(100);
+				Thread.Sleep(diff.numbers[0]);
 				if (Console.KeyAvailable)
 				{
 					ConsoleKeyInfo key = Console.ReadKey();
 					snake.HandleKey(key.Key);
 				}
 			}
-			music.Stop();
-			music.DeathSound();
+            if (game.mus==true)
+            {
+				music.Stop();
+				music.DeathSound();
+            }
 			game.WriteGameOver(score.score);
 			Thread.Sleep(200);
 			Console.ReadKey();
-			score.KeepScore();
-			Console.ReadKey();
+			score.KeepScore();			Console.ReadKey();
 		}
 		static void Main(string[] args)
 		{

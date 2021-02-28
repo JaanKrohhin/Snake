@@ -20,6 +20,7 @@ namespace Snek_ssssssss
 
         public void Menu()
         {
+			Console.SetWindowSize(80, 25);
 			Console.BackgroundColor = ConsoleColor.Black;
 			do
 			{
@@ -88,6 +89,7 @@ namespace Snek_ssssssss
             do
             {
 				PrintMenu(Main, xOffset, yOffset);
+				key = Console.ReadKey(true);
 				if (key.Key == ConsoleKey.D1)
                 {
 					dif = 1;
@@ -110,6 +112,7 @@ namespace Snek_ssssssss
 		}
 		public void WriteGameOver(int score)
 		{
+			Console.SetWindowSize(80, 25);
 			Main = new string[] { "================================", "G A M E	O V E R", "Autor: Evgenij Kartavec and TARpv20", "", "Your score is "+score,"Press any key to continue"};
 			PrintMenu(Main, xOffset, yOffset);
 		}
@@ -132,13 +135,13 @@ namespace Snek_ssssssss
 		{
 			using (StreamReader file = new StreamReader(@"..\..\leaderboard.txt"))
 			{
-				WriteText("   LeaderBoard", xOffset, yOffset++);
-				WriteText("-----------------", xOffset, yOffset++);
+				WriteText("   LeaderBoard", xOffset, yOffset);
+				WriteText("-----------------", xOffset, yOffset+1);
 				for (int i = 0; i < 10; i++)
 				{
-					WriteText(file.ReadLine(), xOffset, yOffset++);
+					WriteText(file.ReadLine(), xOffset, yOffset+2+i);
 				}
-				WriteText("-----------------", xOffset, yOffset++);
+				WriteText("-----------------", xOffset, yOffset+12);
 			}
 		}
 	}
