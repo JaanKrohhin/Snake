@@ -11,12 +11,9 @@ namespace Snek_ssssssss
 		ConsoleKeyInfo key;	
         public int xOffset = 25;
         public int yOffset = 8;
-		string[] Main;
-		public ConsoleColor colour = ConsoleColor.Gray;
-		public char snake = '*';
-		public char wall = '+';
-		public char food = '$';
-
+		public string[] Main;
+		public ConsoleColor[] colours= {ConsoleColor.Gray, ConsoleColor.Gray, ConsoleColor.Gray, ConsoleColor.Black,};//0=snake,1=food,2=walls,3=background
+		public char[] syms = {'*','$','+'};//0=snake,1=food,2=walls
         public void Menu()
         {
 			do
@@ -54,30 +51,18 @@ namespace Snek_ssssssss
 				key = Console.ReadKey(true);
 				if (key.Key == ConsoleKey.D1)
 				{
-					Console.BackgroundColor = ConsoleColor.Black;
-					Console.ForegroundColor = ConsoleColor.Gray;
-					colour = ConsoleColor.Blue;
-					snake = '*';
-					wall = '#';
-					food = '¤';
+					colours = new ConsoleColor[] {ConsoleColor.Cyan,ConsoleColor.DarkCyan,ConsoleColor.White,ConsoleColor.Blue};
+					syms = new char[] {'=','¤','#'};
 				}
 				else if (key.Key == ConsoleKey.D2)
 				{
-					colour = ConsoleColor.Black;
-					Console.BackgroundColor = ConsoleColor.White;
-					Console.ForegroundColor = ConsoleColor.Black;
-					snake = '*';
-					wall = '?';
-					food = '@';
+					colours = new ConsoleColor[] { ConsoleColor.Black, ConsoleColor.Black, ConsoleColor.Black, ConsoleColor.White };
+					syms = new char[] { '¤','?','@'};
 				}
 				else if (key.Key == ConsoleKey.D3)
 				{
-					Console.BackgroundColor = ConsoleColor.Black;
-					Console.ForegroundColor = ConsoleColor.Gray;
-					colour = ConsoleColor.White;
-					snake = '*';
-					wall = '+';
-					food = '$';
+					colours = new ConsoleColor[] { ConsoleColor.White, ConsoleColor.White, ConsoleColor.White, ConsoleColor.Black};
+					syms = new char[] { '%','1','0'};
 				}
 				else if (key.Key == ConsoleKey.D4)
 				{
@@ -85,18 +70,22 @@ namespace Snek_ssssssss
 				}
 			} while (true);
 		}
-		public void WriteGameOver()
+		public void Difficulty()
+        {
+
+        }
+		public void WriteGameOver(int score)
 		{
-			Main = new string[] { "================================", "G A M E	O V E R", "Autor: Evgenij Kartavec and TARpv20","Press any key to continue"};
+			Main = new string[] { "================================", "G A M E	O V E R", "Autor: Evgenij Kartavec and TARpv20", "", "Your score is "+score,"Press any key to continue"};
 			PrintMenu(Main, xOffset, yOffset);
 		}
 
-		static void WriteText(String text, int xOffset, int yOffset)
+		public void WriteText(String text, int xOffset, int yOffset)
 		{
 			Console.SetCursorPosition(xOffset, yOffset);
 			Console.WriteLine(text);
 		}
-        static void PrintMenu(string[] M,int xOffset, int yOffset)
+        public void PrintMenu(string[] M,int xOffset, int yOffset)
         {
 			Console.Clear();
             for (int i = 0; i < M.Length; i++)
