@@ -72,18 +72,5 @@ namespace Snek_ssssssss
                 }
             }
         }
-        public void Board()
-        {
-            using (StreamReader file = new StreamReader(@"..\..\leaderboard.txt"))
-            {
-                WriteText("   LeaderBoard", xOffset, yOffset++);
-                WriteText("-----------------", xOffset, yOffset++);
-                for (int i = 0; i < 10; i++)
-                {
-                    WriteText(file.ReadLine(), xOffset, yOffset++);
-                }
-                WriteText("-----------------", xOffset, yOffset++);
-            }
-        }
     }
 }

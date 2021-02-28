@@ -7,21 +7,23 @@ using System.Threading;
 namespace Snek_ssssssss
 {
 	class Program
-    {
-		static void Main(string[] args)
+	{
+		static void Action(Game game)
 		{
-			Console.Title = "Snake";
 			Console.SetWindowSize(80, 25);
 			Score score = new Score();
 
-			Game game = new Game();
-			game.Menu();
 			Console.BackgroundColor = game.colours[3];
 			Console.Clear();
 
+			Music music = new Music();
+			if (game.mus == true)
+			{
+				music.Play();
+			}
 			Point p = new Point(4, 5, game.syms[0], game.colours[3]);
 
-            Snake snake = new Snake(p, 4, Directions.RIGHT, game.colours[0]);
+			Snake snake = new Snake(p, 4, Directions.RIGHT, game.colours[0]);
 			snake.Draw();
 
 			Walls walls = new Walls(80, 25, game.syms[2], game.colours[2]);
@@ -55,11 +57,23 @@ namespace Snek_ssssssss
 					snake.HandleKey(key.Key);
 				}
 			}
+			music.Stop();
+			music.DeathSound();
 			game.WriteGameOver(score.score);
 			Thread.Sleep(200);
 			Console.ReadKey();
 			score.KeepScore();
-            Console.ReadKey();
+			Console.ReadKey();
+		}
+		static void Main(string[] args)
+		{
+			Console.Title = "Snake";
+			Game game = new Game();
+			while (true)
+			{
+				game.Menu();
+				Action(game);
+			}
 		}
 	}
 }

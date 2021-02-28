@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,17 +9,21 @@ namespace Snek_ssssssss
 {
     class Game
     {
-		ConsoleKeyInfo key;	
+		ConsoleKeyInfo key;
+		public bool mus = true;
+		public int dif;
         public int xOffset = 25;
         public int yOffset = 8;
 		public string[] Main;
 		public ConsoleColor[] colours= {ConsoleColor.Gray, ConsoleColor.Gray, ConsoleColor.Gray, ConsoleColor.Black,};//0=snake,1=food,2=walls,3=background
 		public char[] syms = {'*','$','+'};//0=snake,1=food,2=walls
+
         public void Menu()
         {
+			Console.BackgroundColor = ConsoleColor.Black;
 			do
 			{
-				Main = new string[] { "-----------------", "1 - Start", "2 - Settings", "3 - Difficulty", "4 - Quit" };
+				Main = new string[] { "-----------------", "1 - Start", "2 - Settings", "3 - Difficulty","4 - Leaderboard", "5 - Quit" };
 				PrintMenu(Main, xOffset, yOffset);
 				key = Console.ReadKey(true);
 				if (key.Key == ConsoleKey.D1)
@@ -27,17 +32,22 @@ namespace Snek_ssssssss
                 }
                 else if (key.Key==ConsoleKey.D2)
                 {
-					Main = new string[] { "-----------------", "1 - Sky Preset", "2 - Rock Preset", "3 - Snow Preset", "4 - Back" };
+					Main = new string[] { "-----------------", "1 - Sky Preset", "2 - Rock Preset", "3 - Snow Preset","4 - Sound on/off", "5 - Back" };
 					Settings();
 				}
                 else if (key.Key == ConsoleKey.D3)
                 {
 					Main = new string[] { "-----------------", "1 - Easy", "2 - Medium", "3 - Hard", "4 - Back" };
-					PrintMenu(Main, xOffset, yOffset);
-					key = Console.ReadKey(true);
+					Difficulty();
 				}
 				else if (key.Key == ConsoleKey.D4)
-                {
+				{
+					Console.Clear();
+					Board();
+					Console.ReadKey();
+				}
+				else if (key.Key == ConsoleKey.D5)
+				{
 					Environment.Exit(0);
 				}
 			} while (true);
@@ -65,14 +75,39 @@ namespace Snek_ssssssss
 				}
 				else if (key.Key == ConsoleKey.D4)
 				{
+					mus = !mus;
+				}
+				else if (key.Key == ConsoleKey.D5)
+				{
 					break;
 				}
 			} while (true);
 		}
 		public void Difficulty()
         {
+            do
+            {
+				PrintMenu(Main, xOffset, yOffset);
+				if (key.Key == ConsoleKey.D1)
+                {
+					dif = 1;
+				}
+				else if (key.Key == ConsoleKey.D2)
+				{
+					dif = 2;
+				}
+				else if (key.Key == ConsoleKey.D3)
+				{
+					dif = 3;
+				}
+				else if (key.Key == ConsoleKey.D4)
+				{
+					break;
+				}
 
-        }
+			} while (true);
+
+		}
 		public void WriteGameOver(int score)
 		{
 			Main = new string[] { "================================", "G A M E	O V E R", "Autor: Evgenij Kartavec and TARpv20", "", "Your score is "+score,"Press any key to continue"};
@@ -93,5 +128,19 @@ namespace Snek_ssssssss
             }
 		WriteText(M[0], xOffset, yOffset++);
 		}
+		public void Board()
+		{
+			using (StreamReader file = new StreamReader(@"..\..\leaderboard.txt"))
+			{
+				WriteText("   LeaderBoard", xOffset, yOffset++);
+				WriteText("-----------------", xOffset, yOffset++);
+				for (int i = 0; i < 10; i++)
+				{
+					WriteText(file.ReadLine(), xOffset, yOffset++);
+				}
+				WriteText("-----------------", xOffset, yOffset++);
+			}
+		}
 	}
+
 }
