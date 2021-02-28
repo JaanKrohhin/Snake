@@ -53,7 +53,7 @@ namespace Snek_ssssssss
 				Thread.Sleep(diff.numbers[0]);
 				if (Console.KeyAvailable)
 				{
-					ConsoleKeyInfo key = Console.ReadKey();
+					ConsoleKeyInfo key = Console.ReadKey(true);
 					snake.HandleKey(key.Key);
 				}
 			}
@@ -65,7 +65,8 @@ namespace Snek_ssssssss
 			game.WriteGameOver(score.score);
 			Thread.Sleep(200);
 			Console.ReadKey();
-			score.KeepScore();			Console.ReadKey();
+			score.KeepScore();			
+			Console.ReadKey();
 		}
 		static void Main(string[] args)
 		{
