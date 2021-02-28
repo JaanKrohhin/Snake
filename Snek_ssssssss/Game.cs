@@ -41,7 +41,6 @@ namespace Snek_ssssssss
 					Environment.Exit(0);
 				}
 			} while (true);
-			Console.Clear();
 		}
 		private void Settings()
         {
@@ -51,7 +50,7 @@ namespace Snek_ssssssss
 				key = Console.ReadKey(true);
 				if (key.Key == ConsoleKey.D1)
 				{
-					colours = new ConsoleColor[] {ConsoleColor.Cyan,ConsoleColor.DarkCyan,ConsoleColor.White,ConsoleColor.Blue};
+					colours = new ConsoleColor[] {ConsoleColor.DarkBlue, ConsoleColor.DarkBlue,ConsoleColor.White,ConsoleColor.Cyan};
 					syms = new char[] {'=','¤','#'};
 				}
 				else if (key.Key == ConsoleKey.D2)

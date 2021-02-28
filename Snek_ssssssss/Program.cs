@@ -12,14 +12,12 @@ namespace Snek_ssssssss
 		{
 			Console.Title = "Snake";
 			Console.SetWindowSize(80, 25);
+			Score score = new Score();
 
 			Game game = new Game();
 			game.Menu();
-
-			Score score = new Score();
-
 			Console.BackgroundColor = game.colours[3];
-			Console.ForegroundColor = game.colours[3];
+			Console.Clear();
 
 			Point p = new Point(4, 5, game.syms[0], game.colours[3]);
 
