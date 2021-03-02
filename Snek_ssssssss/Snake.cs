@@ -51,7 +51,7 @@ namespace Snek_ssssssss
         
         public void HandleKey(ConsoleKey key)
         {
-            if (key == ConsoleKey.LeftArrow | key==ConsoleKey.A)
+            if (key == ConsoleKey.LeftArrow | key == ConsoleKey.A)
                 direction = Directions.LEFT;
             else if (key == ConsoleKey.RightArrow | key == ConsoleKey.D)
                 direction = Directions.RIGHT;
@@ -59,6 +59,8 @@ namespace Snek_ssssssss
                 direction = Directions.DOWN;
             else if (key == ConsoleKey.UpArrow | key == ConsoleKey.W)
                 direction = Directions.UP;
+            else if (key == ConsoleKey.Escape)
+                Console.ReadKey(true);
         }
         internal bool Eat(Point food)
         {

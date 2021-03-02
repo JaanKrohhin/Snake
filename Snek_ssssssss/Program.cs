@@ -10,12 +10,11 @@ namespace Snek_ssssssss
 	{
 		static void Action(Game game)
 		{
-			Difficulty diff = new Difficulty(game.dif);
+			Difficulty diff = new Difficulty(1);
 			Score score = new Score();
 
 			Console.BackgroundColor = game.colours[3];
 			Console.Clear();
-
 			Music music = new Music();
 			if (game.mus == true)
 			{
@@ -26,10 +25,10 @@ namespace Snek_ssssssss
 			Snake snake = new Snake(p, 4, Directions.RIGHT, game.colours[0]);
 			snake.Draw();
 
-			Walls walls = new Walls(diff.numbers[1], diff.numbers[2], game.syms[2], game.colours[2]);
+			Walls walls = new Walls(80, 25, game.syms[2], game.colours[2]);
 			walls.Draw();
 
-			FoodCreator foodCreator = new FoodCreator(diff.numbers[1], diff.numbers[2], game.syms[1], game.colours[1]);
+			FoodCreator foodCreator = new FoodCreator(80, 25, game.syms[1], game.colours[1]);
 			Point food = foodCreator.CreateFood();
 			food.Draw();
 
@@ -63,10 +62,9 @@ namespace Snek_ssssssss
 				music.DeathSound();
             }
 			game.WriteGameOver(score.score);
-			Thread.Sleep(200);
-			Console.ReadKey();
+			Thread.Sleep(3000);
+			Console.ReadKey(true);
 			score.KeepScore();			
-			Console.ReadKey();
 		}
 		static void Main(string[] args)
 		{
@@ -74,8 +72,8 @@ namespace Snek_ssssssss
 			Game game = new Game();
 			while (true)
 			{
-				game.Menu();
-				Action(game);
+                game.Menu();
+                Action(game);
 			}
 		}
 	}

@@ -21,7 +21,7 @@ namespace Snek_ssssssss
             }
             else if (sett == 3)
             {
-                numbers = new int[] { 50, 40, 15, 3 };
+                numbers = new int[] { 40, 40, 15, 3 };
             }
         }
 

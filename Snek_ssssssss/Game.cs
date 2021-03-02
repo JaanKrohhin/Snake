@@ -11,7 +11,7 @@ namespace Snek_ssssssss
     {
 		ConsoleKeyInfo key;
 		public bool mus = true;
-		public int dif;
+		public int dif = 1;
         public int xOffset = 25;
         public int yOffset = 8;
 		public string[] Main;
@@ -22,8 +22,10 @@ namespace Snek_ssssssss
         {
 			Console.SetWindowSize(80, 25);
 			Console.BackgroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.White;
 			do
-			{
+			{ 
+				Console.SetWindowSize(80, 25);
 				Main = new string[] { "-----------------", "1 - Start", "2 - Settings", "3 - Difficulty","4 - Leaderboard", "5 - Quit" };
 				PrintMenu(Main, xOffset, yOffset);
 				key = Console.ReadKey(true);
@@ -33,7 +35,7 @@ namespace Snek_ssssssss
                 }
                 else if (key.Key==ConsoleKey.D2)
                 {
-					Main = new string[] { "-----------------", "1 - Sky Preset", "2 - Rock Preset", "3 - Snow Preset","4 - Sound on/off", "5 - Back" };
+					Main = new string[] { "-----------------", "1 - Sky Preset", "2 - Rock Preset", "3 - Snow Preset","4 - Sound off", "5 - Back" };
 					Settings();
 				}
                 else if (key.Key == ConsoleKey.D3)
@@ -45,7 +47,6 @@ namespace Snek_ssssssss
 				{
 					Console.Clear();
 					Board();
-					Console.ReadKey();
 				}
 				else if (key.Key == ConsoleKey.D5)
 				{
@@ -77,6 +78,10 @@ namespace Snek_ssssssss
 				else if (key.Key == ConsoleKey.D4)
 				{
 					mus = !mus;
+					if (mus == false)
+						Main[4] = "4 - Sound on";
+					else
+						Main[4] = "4 - Sound off";
 				}
 				else if (key.Key == ConsoleKey.D5)
 				{
@@ -143,6 +148,8 @@ namespace Snek_ssssssss
 				}
 				WriteText("-----------------", xOffset, yOffset+12);
 			}
+			Console.ReadKey(true);
+
 		}
 	}
 
